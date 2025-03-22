@@ -5,12 +5,15 @@ using UnityEngine.SceneManagement;
 
 public class Bootstrapper : MonoBehaviour
 {
-    private void Start()
+    private IEnumerator Start()
     {
         if (!SceneManager.GetSceneByName("Game").isLoaded)
         {
-            SceneManager.LoadSceneAsync("Game", LoadSceneMode.Additive);
+           AsyncOperation sceneLoad = SceneManager.LoadSceneAsync("Game", LoadSceneMode.Additive);
+
+            yield return new WaitUntil(()=>sceneLoad.isDone);
         }
+        //Initialize all sub-things
     }
 
 
