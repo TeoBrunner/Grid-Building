@@ -30,7 +30,8 @@ public class Bootstrapper : MonoBehaviour
         }            
 
 #if UNITY_EDITOR
-        if (currentlyLoadedEditorScene.IsValid())
+        if (currentlyLoadedEditorScene.IsValid() 
+            && currentlyLoadedEditorScene!= SceneManager.GetSceneByName("Bootstrap"))
         {
             SceneManager.LoadSceneAsync(currentlyLoadedEditorScene.name, LoadSceneMode.Additive);
         }            
